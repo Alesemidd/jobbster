@@ -59,4 +59,4 @@ const PortfolioEdit = () => {
   );
 };
 
-export default withApollo(withAuth(PortfolioEdit, ["admin", "instructor"]));
+export default withApollo(withAuth(PortfolioEdit, ["admin", "employer"]));

@@ -130,6 +130,7 @@ export const DELETE_PORTFOLIO = gql`
 
 export const SIGN_UP = gql`
   mutation SignUp(
+    $role: String!
     $avatar: String
     $username: String!
     $email: String!
@@ -138,6 +139,7 @@ export const SIGN_UP = gql`
   ) {
     signUp(
       input: {
+        role: $role
         avatar: $avatar
         username: $username
         email: $email
@@ -253,7 +255,7 @@ export const POSTS_BY_TOPIC = gql`
     query PostsByTopic($slug: String, $pageNum: Int, $pageSize: Int) {
       postsByTopic(slug: $slug, pageNum: $pageNum, pageSize: $pageSize) {
         posts {
-        ${postResponse}
+          ${postResponse}
         }
         count
       }
@@ -272,6 +274,32 @@ export const CREATE_POST = gql`
       parent: $parent
     }) {
       ${postResponse}
+    }
+  }
+`;
+
+export const GET_HIGHLIGHT = gql`
+  query Highlight($limit: Int) {
+    highlight(limit: $limit) {
+      portfolios {
+        _id
+        title
+        description
+        jobTitle
+        startDate
+        endDate
+      }
+      topics {
+        _id
+        title
+        content
+        slug
+        user {
+          username
+          avatar
+        }
+        createdAt
+      }
     }
   }
 `;

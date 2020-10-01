@@ -7,6 +7,13 @@ class Topic {
     this.user = user;
   }
 
+  getLatest(limit) {
+    return this.Model.find({})
+      .populate("user")
+      .limit(limit)
+      .sort({ createdAt: "desc" });
+  }
+
   getBySlug(slug) {
     return this.Model.findOne({ slug })
       .populate("user")

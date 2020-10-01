@@ -7,7 +7,7 @@ class Post {
     this.user = user;
   }
 
-  async getAllByTopic({topic, pageNum = 1, pageSize = 5}) {
+  async getAllByTopic({ topic, pageNum = 1, pageSize = 5 }) {
     const skips = pageSize * (pageNum - 1);
     const count = await this.Model.countDocuments({ topic });
     const posts = await this.Model.find({ topic })
@@ -19,6 +19,7 @@ class Post {
       .populate({ path: "parent", populate: "user" });
     return { posts, count };
   }
+
   async create(post) {
     if (!this.user) {
       throw new Error("You must be signed in to create a post!");

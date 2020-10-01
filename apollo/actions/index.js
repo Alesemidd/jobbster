@@ -15,8 +15,10 @@ import {
   TOPIC_BY_SLUG,
   POSTS_BY_TOPIC,
   CREATE_POST,
+  GET_HIGHLIGHT,
 } from "@/apollo/queries";
 
+export const useGetHighlight = (options) => useQuery(GET_HIGHLIGHT, options);
 export const useGetPortfolios = (options) => useQuery(GET_PORTFOLIOS, options);
 export const useGetPortfolio = (options) => useQuery(GET_PORTFOLIO, options);
 export const useGetUserPortfolios = () => useQuery(GET_USER_PORTFOLIOS);

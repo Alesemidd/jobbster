@@ -38,6 +38,7 @@ type User {
 }
 
   input SignUpInput {
+    role: String!
     avatar: String
     username: String!
     name: String
@@ -100,5 +101,10 @@ exports.forumTypes = `
     content: String
     parent: String
     topic: String
+  }
+
+  type HighlightRes {
+    portfolios: [Portfolio]
+    topics: [Topic]
   }
 `;

@@ -7,7 +7,7 @@ import { getDataFromTree } from "@apollo/react-ssr";
 import Link from "next/link";
 import { formatDate } from "@/utils/functions";
 
-const InstructorDashboard = withAuth(
+const EmployerDashboard = withAuth(
   () => {
     const { data } = useGetUserPortfolios();
     const [deletePortfolio] = useDeletePortfolio();
@@ -73,8 +73,8 @@ const InstructorDashboard = withAuth(
       </BaseLayout>
     );
   },
-  ["admin", "instructor"],
+  ["admin", "employer"],
   { ssr: true }
 );
 
-export default withApollo(InstructorDashboard, { getDataFromTree });
+export default withApollo(EmployerDashboard, { getDataFromTree });

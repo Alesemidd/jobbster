@@ -5,8 +5,6 @@ import {
   useGetPostsByTopic,
   useGetUser,
   useCreatePost,
-  useDeletePost,
-  useEditPost,
 } from "@/apollo/actions";
 import { useRouter } from "next/router";
 import withApollo from "@/hoc/withApollo";
@@ -17,9 +15,7 @@ import { toast } from "react-toastify";
 import AppPagination from "@/components/shared/Pagination";
 
 const useInitialData = (slug, pagination) => {
-  const { data: dataT } = useGetTopicBySlug({
-    variables: { slug },
-  });
+  const { data: dataT } = useGetTopicBySlug({ variables: { slug } });
   const { data: dataP, fetchMore } = useGetPostsByTopic({
     variables: { slug, ...pagination },
     pollInterval: 5000,
@@ -28,6 +24,7 @@ const useInitialData = (slug, pagination) => {
   const topic = (dataT && dataT.topicBySlug) || {};
   const postData = (dataP && dataP.postsByTopic) || { posts: [], count: 0 };
   const user = (dataU && dataU.user) || null;
+
   return { topic, ...postData, user, fetchMore };
 };
 
@@ -40,6 +37,7 @@ const PostPage = () => {
   });
   const { topic, posts, ...rest } = useInitialData(slug, pagination);
 
+  debugger;
   return (
     <BaseLayout>
       <section className="section-title">
@@ -60,7 +58,6 @@ const PostPage = () => {
             `/forum/topics/${slug}?pageNum=${pageNum}&pageSize=${pageSize}`,
             { shallow: true }
           );
-
           setPagination({ pageNum, pageSize });
         }}
       />
@@ -102,7 +99,7 @@ const Posts = ({ posts, topic, user, fetchMore, ...pagination }) => {
 
   const cleanup = () => {
     setReplierOpen(false);
-    toast.success("Post has been created!", { autoClose: 1000 });
+    toast.success("Post has been created!", { autoClose: 2000 });
     scrollToBottom();
   };
 
@@ -171,4 +168,5 @@ const Posts = ({ posts, topic, user, fetchMore, ...pagination }) => {
     </section>
   );
 };
+
 export default withApollo(PostPage, { getDataFromTree });

@@ -1,3 +1,11 @@
+const cloudinary = require("cloudinary");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
 const data = {
   portfolios: [
     {
@@ -34,6 +42,17 @@ const data = {
       endDate: "01/01/2011",
     },
   ],
+};
+
+exports.mixedQueries = {
+  highlight: async (root, { limit = 3 }, ctx) => {
+    const portfolios = await ctx.models.Portfolio.getLatest(limit);
+    const topics = await ctx.models.Topic.getLatest(limit);
+    return {
+      portfolios,
+      topics,
+    };
+  },
 };
 
 exports.portfolioQueries = {
@@ -77,6 +96,14 @@ exports.userMutations = {
     const registredUser = await ctx.models.User.signUp(input);
     return registredUser._id;
   },
+
+  // uploadImage: async (parent, { filename }, ctx) => {
+
+  //   const avatar = await cloudinary.v2.uploader.upload(filename);
+  //await models.User.update({photo:})
+
+  // }
+
   signIn: (root, { input }, ctx) => {
     return ctx.models.User.signIn(input, ctx);
   },
@@ -102,8 +129,8 @@ exports.forumQueries = {
     return ctx.models.Topic.getBySlug(slug);
   },
   postsByTopic: async (root, { slug, ...pagination }, ctx) => {
-    const topic = await ctx.models.Topic.getBySlug({ slug, ...pagination });
-    return ctx.models.Post.getAllByTopic(topic);
+    const topic = await ctx.models.Topic.getBySlug(slug);
+    return ctx.models.Post.getAllByTopic({ topic, ...pagination });
   },
 };
 

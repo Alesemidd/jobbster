@@ -28,10 +28,10 @@ const userSchema = new Schema({
     required: true,
   },
   role: {
-    enum: ["guest", "admin", "instructor"],
+    enum: ["seeker", "admin", "employer"],
     type: String,
     required: true,
-    default: "guest",
+    default: "seeker",
   },
   info: String,
   createdAt: { type: Date, default: Date.now },

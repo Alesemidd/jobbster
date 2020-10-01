@@ -1,4 +1,5 @@
 import AppPagination from "@/components/shared/Pagination";
+import { useState } from "react";
 import { useGetPortfolios } from "@/apollo/actions";
 import BaseLayout from "@/layouts/BaseLayout";
 import PortfolioCard from "@/components/portfolios/PortfolioCard";
@@ -6,14 +7,21 @@ import Link from "next/link";
 import withApollo from "@/hoc/withApollo";
 import { getDataFromTree } from "@apollo/react-ssr";
 
-const Portfolios = () => {
+const useGetInitialData = (pagination) => {
   const { data } = useGetPortfolios({
-    //this data is undefined
-    variables: { pageNum: 1, pageSize: 6 },
+    variables: { ...pagination },
   });
-  debugger;
+  const portfolios = (data && data.portfolios.portfolios) || [];
+  const count = (data && data.portfolios.count) || { count: 0 };
+  return { portfolios, count };
+};
 
-  const portfolios = data.data.portfolios.portfolios;
+const Portfolios = () => {
+  const [pagination, setPagination] = useState({ pageNum: 1, pageSize: 6 });
+
+  const { portfolios, count } = useGetInitialData(pagination);
+
+  const count1 = Number(count);
 
   return (
     <BaseLayout>
@@ -38,7 +46,14 @@ const Portfolios = () => {
         </div>
       </section>
       <div className="pagination-container ml-auto">
-        <AppPagination />
+        <AppPagination
+          count={count1}
+          pageSize={pagination.pageSize}
+          pageNum={pagination.pageNum}
+          onPageChange={(pageNum, pageSize) => {
+            setPagination({ pageNum, pageSize });
+          }}
+        />
       </div>
     </BaseLayout>
   );

@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 
 const RegisterForm = ({ onSubmit }) => {
@@ -7,7 +6,17 @@ const RegisterForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group">
-        <label htmlFor="avatar">Avatar</label>
+        <label htmlFor="role">Account type</label>
+        <input
+          ref={register}
+          type="text"
+          className="form-control"
+          name="role"
+          id="role"
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="avatar">Your Avatar URL</label>
         <input
           ref={register}
           type="text"
@@ -20,17 +29,17 @@ const RegisterForm = ({ onSubmit }) => {
         <label htmlFor="username">Username</label>
         <input
           ref={register}
-          type="test"
+          type="text"
           className="form-control"
           name="username"
           id="username"
         />
       </div>
       <div className="form-group">
-        <label htmlFor="username">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           ref={register}
-          type="test"
+          type="text"
           className="form-control"
           name="email"
           id="email"

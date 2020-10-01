@@ -177,6 +177,8 @@ html {
 
 .card-footer {
   background-color: #acd3f9;
+  max-height: 76px;
+  min-height: 76px;
 }
 
 .card:hover {
@@ -573,13 +575,13 @@ p {
   }
 }
 
+.pagination-container {
+  margin-right: 30%;
+}
+
 .posts-bottom {
   display: flex;
   width: 100%;
-
-  .pagination-container {
-    align-self: center;
-  }
 }
 
 .reply-controls {

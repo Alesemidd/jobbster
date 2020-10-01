@@ -56,7 +56,7 @@ const AppNavbar = () => {
                 <>
                   <span className="nav-link mr-2">Welcome {user.name}</span>
 
-                  {user.role === "admin" || user.role === "instructor" ? (
+                  {user.role === "admin" || user.role === "employer" ? (
                     <>
                       <AppLink
                         href="/employer/[id]/dashboard"

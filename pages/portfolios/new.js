@@ -26,7 +26,7 @@ const PortfolioNew = () => {
     toast.success("Posting successfully created!", { autoClose: 3000 });
     setTimeout(() => {
       router.push(`/employer/${user._id}/dashboard`);
-    }, 1000);
+    }, 2000);
   };
   return (
     <BaseLayout>
@@ -50,4 +50,4 @@ const PortfolioNew = () => {
   );
 };
 
-export default withApollo(withAuth(PortfolioNew, ["admin", "instructor"]));
+export default withApollo(withAuth(PortfolioNew, ["admin", "employer"]));

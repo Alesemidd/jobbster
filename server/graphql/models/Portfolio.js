@@ -3,13 +3,23 @@ class Portfolio {
     // this.Model === Portfolio
     this.Model = model;
     this.user = user;
-    this.writeRights = ["instructor", "admin"];
+    this.writeRights = ["employer", "admin"];
   }
 
-  async getAll({pageNum = 1, pageSize = 6}) {
+  getLatest(limit) {
+    return this.Model.find({})
+      .populate("user")
+      .limit(limit)
+      .sort({ createdAt: "desc" });
+  }
+
+  async getAll({ pageNum = 1, pageSize = 6 }) {
     const skips = pageSize * (pageNum - 1);
     const count = await this.Model.countDocuments();
-    const portfolios = await this.Model.find({}).skip(skips).limit(pageSize);
+    const portfolios = await this.Model.find({})
+      .skip(skips)
+      .limit(pageSize)
+      .sort({ createdAt: "desc" });
     return { portfolios, count };
   }
   getAllByUser() {
