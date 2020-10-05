@@ -10,7 +10,6 @@ const JobSearch = ({ keyword }) => {
   console.log(parsedUsers);
   return (
     <section className="pb-5">
-      <p>Search results will appear below</p>
       <div className="row">
         {parsedUsers.map((parsedUser) => (
           <div key={parsedUser._id} className="col-md-4">
