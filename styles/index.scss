@@ -289,12 +289,13 @@ html {
 h4 {
   overflow-wrap: break-word;
   text-align: justify;
+  text-emphasis: center;
   font-style: italic;
-  color: #3a4bf0;
 }
 
 h3 {
   color: $blue;
+  text-align: center;
 }
 
 p {

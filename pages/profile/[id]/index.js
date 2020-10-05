@@ -14,53 +14,53 @@ const Profile = withAuth(
     const { data } = useGetUserById({
       variables: { ID: id },
     });
-    const user = (data && data.userById) || [];
+    const user1 = (data && data.userById) || [];
 
     return (
       <BaseLayout>
         <section className="container-1">
-          <img id="profileimg" src={user.avatar} />
+          <img id="profileimg" src={user1.avatar} />
           <br />
           <h3>
             {" "}
             <br />
             <strong>
-              Hi! I'm {user.name} and I'm an experienced {user.jobtitle}
+              Hi! I'm {user1.name} and I'm an experienced {user1.jobtitle}
             </strong>
           </h3>
           <br />
-          <h4>Welcome to my profile page!</h4>
+          <h3>Welcome to my profile page!</h3>
           <br />
           <Tabs defaultActiveKey="profile" id="profile">
             <Tab eventKey="home" title="Contact info">
               <ul>
-                <li>Cell: {user.phone}</li>
+                <li>Cell: {user1.phone}</li>
                 <li>
                   {" "}
-                  <a className="link" href={`https://${user.linked}`}>
+                  <a className="link" href={`https://${user1.linked}`}>
                     My LinkedIn Profile
                   </a>
                 </li>
-                <li>Email: {user.email}</li>
-                <a href={`mailto:${user.email}`}>
+                <li>Email: {user1.email}</li>
+                <a href={`mailto:${user1.email}`}>
                   Click Here To Send me an email!
                 </a>
               </ul>
             </Tab>
             <Tab eventKey="stack" title="Tech Stack">
-              <p>{user.stack}</p>
+              <p>{user1.stack}</p>
             </Tab>
             <Tab eventKey="cv" title="CV">
               <h4>Here is my CV in plain text as requrested:</h4>
               <br />
-              <p>{user.cv}</p>
+              <p>{user1.cv}</p>
             </Tab>
           </Tabs>
         </section>
       </BaseLayout>
     );
   },
-  ["admin", "employer"],
+  ["admin", "employer", "seeker"],
   { ssr: true }
 );
 export default withApollo(Profile, { getDataFromTree });
