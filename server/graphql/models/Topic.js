@@ -26,6 +26,10 @@ class Topic {
       .populate("forumCategory");
   }
 
+  findAndDelete(id) {
+    return this.Model.findOneAndRemove({ _id: id });
+  }
+
   async _create(data) {
     const createdTopic = await this.Model.create(data);
     return this.Model.findById(createdTopic._id)

@@ -22,8 +22,15 @@ class Portfolio {
       .sort({ createdAt: "desc" });
     return { portfolios, count };
   }
+
   getAllByUser() {
     return this.Model.find({ user: this.user._id }).sort({ startDate: "desc" });
+  }
+
+  getAllByKey(key) {
+    return this.Model.find({ $text: { $search: key } }).sort({
+      startDate: "desc",
+    });
   }
 
   getById(id) {

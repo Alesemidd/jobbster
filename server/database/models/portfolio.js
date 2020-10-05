@@ -14,4 +14,10 @@ const portfolioSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+portfolioSchema.index({
+  title: "text",
+  description: "text",
+  jobTitle: "text",
+});
+
 module.exports = mongoose.model("Portfolio", portfolioSchema);

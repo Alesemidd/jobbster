@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/forms/RegisterForm";
+import EmpRegisterForm from "@/components/forms/EmpRegisterForm";
 import withApollo from "@/hoc/withApollo";
 import { Mutation } from "react-apollo";
 import { SIGN_UP } from "@/apollo/queries";
@@ -17,11 +17,11 @@ const Register = () => {
       <div className="bwm-form mt-5">
         <div className="row">
           <div className="col-md-5 mx-auto">
-            <h1 className="page-title">Register</h1>
+            <h1 className="page-title">Employer Registration</h1>
             <Mutation mutation={SIGN_UP}>
               {(signUpUser, { data, error }) => (
                 <>
-                  <RegisterForm
+                  <EmpRegisterForm
                     onSubmit={(registerData) => {
                       signUpUser({ variables: registerData });
                     }}

@@ -6,6 +6,7 @@ import { useGetUserPortfolios, useDeletePortfolio } from "@/apollo/actions";
 import { getDataFromTree } from "@apollo/react-ssr";
 import Link from "next/link";
 import { formatDate } from "@/utils/functions";
+import { shortifyDash } from "@/utils/functions";
 
 const EmployerDashboard = withAuth(
   () => {
@@ -24,9 +25,9 @@ const EmployerDashboard = withAuth(
         <div className="pb-5">
           <div className="row">
             {userPortfolios.map((p) => (
-              <Card key={p._id} className=" col-4 dash1">
+              <Card key={p._id} className="col-md-4 col-sm-6 col-lg-3 dash1">
                 {!p && (
-                  <i className="ml-2">
+                  <i className="ml-auto">
                     You haven't created any postings yet. Create new now!
                   </i>
                 )}
@@ -34,13 +35,9 @@ const EmployerDashboard = withAuth(
                   {p.jobTitle} at {p.company}
                 </Card.Header>
                 <Card.Body className="nohover">
-                  <Card.Title>{p.title}</Card.Title>
-                  <Card.Text>
-                    {formatDate(p.startDate)} -{" "}
-                    {(p.endDate && formatDate(p.endDate)) || "Present"}
-                  </Card.Text>
+                  <Card.Title>{shortifyDash(p.description)}</Card.Title>
+                  <Card.Text>Start Date {formatDate(p.startDate)}</Card.Text>
 
-                  {/* TODO: Delete Update Buttons */}
                   <Link href="/portfolios/[id]" as={`/portfolios/${p._id}`}>
                     <a className="card-link">
                       <Button className="view" variant="success">

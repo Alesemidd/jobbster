@@ -1,18 +1,20 @@
 import { useForm } from "react-hook-form";
 
-const RegisterForm = ({ onSubmit }) => {
+const EmpRegisterForm = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group">
-        <label htmlFor="role">Account type</label>
+      <div className="form-group hide">
+        <label htmlFor="username">Account type</label>
         <input
           ref={register}
           type="text"
           className="form-control"
           name="role"
           id="role"
+          value="employer"
+          readOnly
         />
       </div>
       <div className="form-group">
@@ -23,6 +25,16 @@ const RegisterForm = ({ onSubmit }) => {
           className="form-control"
           name="avatar"
           id="avatar"
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="company">Company Name</label>
+        <input
+          ref={register}
+          type="text"
+          className="form-control"
+          name="company"
+          id="company"
         />
       </div>
       <div className="form-group">
@@ -72,4 +84,4 @@ const RegisterForm = ({ onSubmit }) => {
   );
 };
 
-export default RegisterForm;
+export default EmpRegisterForm;

@@ -37,7 +37,6 @@ const PostPage = () => {
   });
   const { topic, posts, ...rest } = useInitialData(slug, pagination);
 
-  debugger;
   return (
     <BaseLayout>
       <section className="section-title">

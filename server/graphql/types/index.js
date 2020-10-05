@@ -25,16 +25,25 @@ type PagPortfolios {
 input PortfolioInput {
     ${portfolioFields}
   }
+
+
 `;
 
 exports.userTypes = `
 type User {
   _id: ID,
+  jobtitle: String
   avatar: String
   username: String
   name: String
   email: String
   role: String
+  cv: String
+  techstack: String
+  company: String
+  phone: String
+  linked: String
+  stack: String
 }
 
   input SignUpInput {
@@ -45,6 +54,12 @@ type User {
     email: String!
     password: String!
     passwordConfirmation: String!
+    cv: String
+    jobtitle: String
+    company: String
+    phone: String
+    linked: String
+    stack: String
   }
   
   input SignInInput {    
@@ -73,6 +88,7 @@ exports.forumTypes = `
     forumCategory: ForumCategory
     user: Author
     createdAt: String
+    post: Post
   }
 
   input TopicInput {

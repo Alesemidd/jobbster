@@ -12,7 +12,7 @@ const Hero = () => {
           </h2>
           <div className="button-container">
             <a href="/about" className="btn btn-main bg-blue ttu">
-              How this works:
+              How Jobbster works
             </a>
           </div>
         </div>

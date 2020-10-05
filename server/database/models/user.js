@@ -6,7 +6,7 @@ const userSchema = new Schema({
   avatar: String,
   email: {
     type: String,
-    required: "Email is required!",
+    //required: "Email is required!",
     lowercase: true,
     index: true,
     unique: true,
@@ -14,7 +14,7 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-    minlength: [6, "Minimum name length is 6 characters!"],
+    // minlength: [6, "Minimum name length is 6 characters!"],
   },
   username: {
     type: String,
@@ -33,8 +33,32 @@ const userSchema = new Schema({
     required: true,
     default: "seeker",
   },
+  cv: {
+    type: String,
+  },
+  jobtitle: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  linked: {
+    type: String,
+  },
+  stack: {
+    type: String,
+  },
+
+  company: { type: String },
+
   info: String,
   createdAt: { type: Date, default: Date.now },
+});
+
+userSchema.index({
+  stack: "text",
+  cv: "text",
+  jobtitle: "text",
 });
 
 userSchema.pre("save", function (next) {

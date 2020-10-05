@@ -23,10 +23,10 @@ const PortfolioNew = () => {
 
   const handleCreatePortfolio = async (data) => {
     await createPortfolio({ variables: data });
-    toast.success("Posting successfully created!", { autoClose: 3000 });
+    toast.success("Posting successfully created!", { autoClose: 2000 });
     setTimeout(() => {
       router.push(`/employer/${user._id}/dashboard`);
-    }, 2000);
+    }, 3000);
   };
   return (
     <BaseLayout>

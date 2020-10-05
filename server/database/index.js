@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const config = require("../config/dev");
+const config = require("../config");
 require("./models/portfolio.js");
 require("./models/user");
 require("./models/forumCategory");
 require("./models/topic");
-require('./models/post');
+require("./models/post");
 
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);

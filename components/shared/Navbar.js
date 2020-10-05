@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import Link from "next/link";
 import withApollo from "@/hoc/withApollo";
 import { useLazyGetUser } from "@/apollo/actions";
+import { Dropdown } from "react-bootstrap";
 
 const AppLink = ({ children, className, href, as }) => (
   <Link href={href} as={as}>
@@ -54,7 +55,10 @@ const AppNavbar = () => {
             <Nav>
               {user && (
                 <>
-                  <span className="nav-link mr-2">Welcome {user.name}</span>
+                  <span className="nav-link mr-2">
+                    Welcome{" "}
+                    {user.role === "employer" ? user.username : user.name}
+                  </span>
 
                   {user.role === "admin" || user.role === "employer" ? (
                     <>
@@ -65,10 +69,17 @@ const AppNavbar = () => {
                       >
                         Dashboard
                       </AppLink>
+                      <AppLink href="/UserSearch" className="nav-link mr-3">
+                        Candidate Search
+                      </AppLink>
                     </>
                   ) : (
-                    <AppLink href="/cv" className="nav-link mr-3">
-                      Your CV
+                    <AppLink
+                      href="/profile/[id]"
+                      as={`/profile/${user._id}`}
+                      className="nav-link mr-3"
+                    >
+                      My profile
                     </AppLink>
                   )}
 
@@ -82,12 +93,18 @@ const AppNavbar = () => {
                   <AppLink href="/login" className="mr-3 nav-link">
                     Sign In
                   </AppLink>
-                  <AppLink
-                    href="/register"
-                    className="mr-3 btn btn-success bg-green-2 bright"
-                  >
-                    Sign Up
-                  </AppLink>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="danger" id="dropdown-basic">
+                      SIGN UP
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/empregister">
+                        Employer
+                      </Dropdown.Item>
+                      <Dropdown.Item href="/uregister">Candidate</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </>
               )}
             </Nav>

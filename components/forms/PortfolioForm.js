@@ -37,7 +37,7 @@ const PortfolioForm = ({ onSubmit, initialData = {} }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-group">
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title">Post Title</label>
         <input
           ref={register}
           name="title"
@@ -115,7 +115,7 @@ const PortfolioForm = ({ onSubmit, initialData = {} }) => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="street">End Date</label>
+        <label htmlFor="street">Set expiration date for this Post if any</label>
         <div>
           <DatePicker
             showYearDropdown
@@ -132,7 +132,7 @@ const PortfolioForm = ({ onSubmit, initialData = {} }) => {
             className="btn btn-danger"
             onClick={() => handleDateChange("endDate", setEndDate)(null)}
           >
-            No End Date
+            No Expiraton Date
           </button>
         )}
         {!endDate && (
@@ -141,7 +141,7 @@ const PortfolioForm = ({ onSubmit, initialData = {} }) => {
             className="btn btn-success"
             onClick={() => handleDateChange("endDate", setEndDate)(new Date())}
           >
-            Set End Date
+            Set Expiration Date
           </button>
         )}
       </div>

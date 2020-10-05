@@ -36,12 +36,56 @@ export const GET_PORTFOLIOS = gql`
   }
 `;
 
+export const GET__PORTFOLIOS_BYKEY = gql`
+  query PortfoliosByKey($key: String) {
+    portfoliosByKey(key: $key) {
+      _id
+      title
+      company
+      companyWebsite
+      location
+      jobTitle
+      description
+      startDate
+      endDate
+    }
+  }
+`;
+
+export const GET_USERS_BYKEY = gql`
+  query UsersByKey($key: String) {
+    usersByKey(key: $key) {
+      _id
+      name
+      jobtitle
+      stack
+    }
+  }
+`;
+
+export const GET_USER_BYID = gql`
+  query getUserById($ID: String) {
+    userById(ID: $ID) {
+      _id
+      name
+      jobtitle
+      stack
+      cv
+      email
+      phone
+      linked
+      avatar
+    }
+  }
+`;
+
 export const GET_USER_PORTFOLIOS = gql`
   query UserPortfolios {
     userPortfolios {
       _id
       company
       title
+      description
       location
       jobTitle
       startDate
@@ -128,23 +172,43 @@ export const DELETE_PORTFOLIO = gql`
   }
 `;
 
+export const DELETE_TOPIC = gql`
+  mutation DeleteTopic($id: ID) {
+    deleteTopic(id: $id)
+  }
+`;
+
 export const SIGN_UP = gql`
   mutation SignUp(
     $role: String!
     $avatar: String
+    $jobtitle: String
+    $phone: String
+    $stack: String
+    $name: String
+    $company: String
     $username: String!
+    $linked: String
     $email: String!
     $password: String!
     $passwordConfirmation: String!
+    $cv: String
   ) {
     signUp(
       input: {
         role: $role
         avatar: $avatar
         username: $username
+        name: $name
+        company: $company
+        cv: $cv
         email: $email
         password: $password
         passwordConfirmation: $passwordConfirmation
+        phone: $phone
+        stack: $stack
+        jobtitle: $jobtitle
+        linked: $linked
       }
     )
   }
@@ -165,9 +229,16 @@ export const GET_USER = gql`
   query User {
     user {
       _id
+      avatar
+      name
+      cv
+      email
       username
       role
-      name
+      jobtitle
+      phone
+      linked
+      stack
     }
   }
 `;
@@ -196,6 +267,9 @@ const topicResponse = `
   user {
     username
     avatar
+  }
+  post {
+    _id
   }
   forumCategory {
     _id

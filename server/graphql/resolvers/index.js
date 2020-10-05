@@ -65,6 +65,9 @@ exports.portfolioQueries = {
   userPortfolios: (root, args, ctx) => {
     return ctx.models.Portfolio.getAllByUser();
   },
+  portfoliosByKey: (root, { key }, ctx) => {
+    return ctx.models.Portfolio.getAllByKey(key);
+  },
 };
 
 exports.portfolioMutations = {
@@ -88,6 +91,12 @@ exports.portfolioMutations = {
 exports.userQueries = {
   user: (root, args, ctx) => {
     return ctx.models.User.getAuthUser(ctx);
+  },
+  usersByKey: (root, { key }, ctx) => {
+    return ctx.models.User.getAllByKey(key);
+  },
+  userById: (root, { ID }, ctx) => {
+    return ctx.models.User.getById(ID);
   },
 };
 
@@ -143,6 +152,12 @@ exports.forumMutations = {
     const topic = await ctx.models.Topic.create(input);
     return topic;
   },
+
+  deleteTopic: async (root, { id }, ctx) => {
+    const deletedTopic = await ctx.models.Topic.findAndDelete(id);
+    return deletedTopic._id;
+  },
+
   createPost: async (root, { input }, ctx) => {
     const post = await ctx.models.Post.create(input);
     return post;

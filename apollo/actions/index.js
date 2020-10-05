@@ -16,13 +16,23 @@ import {
   POSTS_BY_TOPIC,
   CREATE_POST,
   GET_HIGHLIGHT,
+  DELETE_TOPIC,
+  GET__PORTFOLIOS_BYKEY,
+  GET_USERS_BYKEY,
+  GET_USER_BYID,
 } from "@/apollo/queries";
 
+export const useGetUserById = (options) => useQuery(GET_USER_BYID, options);
+export const useGetUsersByKey = (options) => useQuery(GET_USERS_BYKEY, options);
+export const useGetPortfoliosByKey = (options) =>
+  useQuery(GET__PORTFOLIOS_BYKEY, options);
 export const useGetHighlight = (options) => useQuery(GET_HIGHLIGHT, options);
 export const useGetPortfolios = (options) => useQuery(GET_PORTFOLIOS, options);
 export const useGetPortfolio = (options) => useQuery(GET_PORTFOLIO, options);
 export const useGetUserPortfolios = () => useQuery(GET_USER_PORTFOLIOS);
 export const useUpdatePortfolio = () => useMutation(UPDATE_PORTFOLIO);
+export const useDeleteTopic = () => useMutation(DELETE_TOPIC);
+
 export const useDeletePortfolio = () =>
   useMutation(DELETE_PORTFOLIO, {
     update(cache, { data: { deletePortfolio } }) {

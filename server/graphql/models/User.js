@@ -11,6 +11,10 @@ class User {
     return null;
   }
 
+  getById(ID) {
+    return this.Model.findById(ID);
+  }
+
   async signUp(signUpData) {
     if (signUpData.password !== signUpData.passwordConfirmation) {
       throw new Error("Passwords don't match");
@@ -24,6 +28,11 @@ class User {
 
       throw e;
     }
+  }
+  getAllByKey(key) {
+    return this.Model.find({ $text: { $search: key } }).sort({
+      startDate: "desc",
+    });
   }
 
   async signIn(signInData, ctx) {

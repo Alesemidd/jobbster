@@ -7,6 +7,7 @@ const topicSchema = new Schema({
   slug: { type: String, unique: true, index: true },
   forumCategory: { type: Schema.Types.ObjectId, ref: "ForumCategory" },
   user: { type: Schema.Types.ObjectId, ref: "User" },
+  post: { type: Schema.Types.ObjectId, ref: "Post" },
   createdAt: { type: Date, default: Date.now },
 });
 

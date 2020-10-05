@@ -2,7 +2,6 @@ import { fromNow } from "@/utils/functions";
 
 const PostItem = ({ post, onReply, className = "", canCreate = false }) => {
   const { parent } = post;
-
   return (
     <div className={`topic-post ${className}`}>
       <article>

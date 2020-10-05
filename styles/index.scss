@@ -115,8 +115,14 @@ html {
 
 // Shared END
 
+.form-control {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section-title {
   color: $gray-80;
+  text-align: center;
 }
 
 .break {
@@ -141,6 +147,16 @@ html {
 }
 
 // General Components START
+.container-1 {
+  background-color: #f1f1f1;
+  text-align: center;
+  border-style: hidden;
+  border-radius: 15px;
+}
+
+.hide {
+  display: none;
+}
 
 .dash1 {
   background-color: #6cd3fd;
@@ -149,6 +165,7 @@ html {
 
 .card-header {
   background-color: #6cd3fd;
+  font-size: 16px;
 }
 
 .btn-main {
@@ -161,8 +178,7 @@ html {
 }
 
 .card-body {
-  min-height: 180px;
-  max-height: 180px;
+  height: 200px;
   background-color: #6cd3fd;
   &:hover {
     background-color: #6cfdb7;
@@ -177,10 +193,14 @@ html {
 
 .card-footer {
   background-color: #acd3f9;
-  max-height: 76px;
-  min-height: 76px;
+  height: 75px;
 }
 
+.userfooter {
+  background-color: #acd3f9;
+  height: 40px;
+  text-align: center;
+}
 .card:hover {
   cursor: pointer;
 }
@@ -194,7 +214,9 @@ html {
     cursor: pointer;
   }
 }
-
+.card-bottom {
+  margin-bottom: 2px;
+}
 .avatar-container {
   display: flex;
   flex-direction: row;
@@ -243,6 +265,33 @@ html {
 // General Components END
 
 // Components START
+.nav-tabs {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#profileimg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 300px;
+  border-radius: 60px 60px 60px 60px;
+}
+
+@media only screen and (max-width: 400px) {
+  #profileimg {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 180px;
+    border-radius: 60px 60px 60px 60px;
+  }
+}
+
+h4 {
+  overflow-wrap: break-word;
+  text-align: justify;
+  font-style: italic;
+  color: #3a4bf0;
+}
 
 h3 {
   color: $blue;
@@ -338,19 +387,117 @@ p {
 #update {
   position: absolute;
   bottom: 4px;
-  margin-left: 18%;
+  margin-left: 16%;
 }
 
 .delete {
   position: absolute;
   bottom: 4px;
-  margin-left: 53%;
+  margin-left: 51%;
 }
 
 .view {
   position: absolute;
   bottom: 4px;
-  margin-left: -10%;
+  margin-left: -11%;
+}
+
+@media only screen and (min-width: 990px) {
+  #update {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 15%;
+  }
+
+  .delete {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 51%;
+  }
+
+  .view {
+    position: absolute;
+    bottom: 4px;
+    margin-left: -14%;
+  }
+  .newpost {
+    position: relative;
+    margin-left: 50%;
+    margin-top: -10%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #update {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 19%;
+  }
+
+  .delete {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 51%;
+  }
+
+  .view {
+    position: absolute;
+    bottom: 4px;
+    margin-left: -8%;
+  }
+  .newpost {
+    position: relative;
+    margin-left: 50%;
+    margin-top: -10%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .newpost {
+    position: relative;
+    margin-left: 60%;
+    margin-top: -25%;
+  }
+  .delete {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 61%;
+  }
+  #update {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 30%;
+  }
+
+  .view {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 5%;
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 575px) {
+  .newpost {
+    position: relative;
+    margin-left: 80%;
+    margin-top: -19%;
+  }
+  .delete {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 52%;
+  }
+  #update {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 18%;
+  }
+
+  .view {
+    position: absolute;
+    bottom: 4px;
+    margin-left: -8%;
+  }
 }
 
 .fj-category-container {
@@ -576,7 +723,7 @@ p {
 }
 
 .pagination-container {
-  margin-right: 30%;
+  margin-left: 30%;
 }
 
 .posts-bottom {
@@ -760,8 +907,8 @@ p {
   }
 
   h1 {
-    font-weight: 700;
     margin-bottom: 30px;
+    color: $blue;
   }
   .image-container {
     position: relative;
@@ -793,7 +940,14 @@ p {
 }
 
 // Components END
-.card-header {
+.card-title {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.card-text {
+  text-align: left;
+  font-size: 14px;
 }
 
 .portfolio-detail {
@@ -851,12 +1005,17 @@ p {
 
   /* Main marketing message and sign up button */
   .jumbotron {
+    background-image: url("../public/beach.jpg");
+    background-size: cover;
+    height: 100%;
     text-align: center;
     border-bottom: 0.05rem solid #e5e5e5;
   }
   .jumbotron .btn {
     padding: 0.75rem 1.5rem;
     font-size: 1.5rem;
+    margin-left: 22%;
+    margin-top: 15px;
   }
 
   /* Supporting marketing content */

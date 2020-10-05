@@ -30,6 +30,10 @@ exports.createApolloServer = () => {
     portfolio(id: ID): Portfolio
     portfolios(pageNum: Int, pageSize: Int): PagPortfolios
     userPortfolios: [Portfolio]
+    portfoliosByKey(key: String): [Portfolio]
+    usersByKey(key: String): [User]
+    userById(ID: String): User
+
 
     user: User
 
@@ -39,7 +43,7 @@ exports.createApolloServer = () => {
     topicBySlug(slug: String): Topic
     postsBySlug(slug: String, pageNum: Int, pageSize: Int): [Post]
 
-    postsByTopic(slug: String): PagPosts
+    postsByTopic(slug: String, pageNum: Int, pageSize: Int): PagPosts
 
     highlight(limit: Int): HighlightRes
   }
@@ -47,6 +51,8 @@ exports.createApolloServer = () => {
     createPortfolio(input: PortfolioInput): Portfolio
     updatePortfolio(id: ID, input: PortfolioInput): Portfolio
     deletePortfolio(id: ID): ID
+
+    deleteTopic(id: ID): ID
 
     createTopic(input: TopicInput): Topic
 
