@@ -25,7 +25,7 @@ const PortfolioNew = () => {
     await createPortfolio({ variables: data });
     toast.success("Posting successfully created!", { autoClose: 2000 });
     setTimeout(() => {
-      router.replace(`/employer/${user._id}/dashboard`);
+      router.push(`/employer/${user._id}/dashboard`);
     }, 3000);
   };
   return (
